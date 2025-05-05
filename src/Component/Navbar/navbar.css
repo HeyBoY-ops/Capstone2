@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: lightpink;
+    color: whitesmoke;
+}
+
+.navLeft{
+    margin: 3vh 2.5vw;
+}
+
+.navRight{
+    margin: 3vh 2.5vw;
+    display: flex;
+    gap: 2vw;
+}
+
+.navbar .button{
+    margin: 1.5vh 2.5vw;
+    display: flex;
+    gap: 1vw;
+}
+
+.navbar button{
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0.4em;
+}
+
+.button1{
+    background-color: whitesmoke;
+    color: black;
+    border: 2px solid whitesmoke;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 1em 2.5em;
+}
+
+.button2{
+    background-color: red;
+    color: white;
+    border: 2px solid red;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 1em 2.5em;
+}
