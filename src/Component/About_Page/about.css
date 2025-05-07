@@ -1,0 +1,32 @@
+.about-container {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .about-container h1 {
+
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+  }
+  
+  .about-container h2 {
+    margin-top: 2rem;
+    color: #444;
+    font-size: 1.6rem;
+  }
+  
+  .about-container ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .about-container li {
+    margin-bottom: 0.6rem;
+    list-style: none;
+  }
+  

@@ -5,6 +5,7 @@ import Modi from '../../assets/ModiMoney.png'
 
 function Home () {
     return (
+        <>
         <div className="home">
             
             <div className="homeImg">
@@ -35,6 +36,7 @@ function Home () {
 
             
         </div>
+        </>
     )
 }
 
