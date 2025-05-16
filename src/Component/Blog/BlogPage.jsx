@@ -1,0 +1,30 @@
+import React from 'react';
+import { blogPosts } from './blogData';
+import './BlogPage.css';
+
+const BlogPage = () => {
+    return (
+        <div className="blog-page">
+            <h1 className="blog-header">Our Latest Blog Posts</h1>
+            <div className="blog-list">
+                {blogPosts.map((post) => (
+                    <div className="blog-card" key={post.id}>
+                        <h2 className="blog-title">{post.title}</h2>
+                        <p className="blog-summary">{post.summary}</p>
+                        <a
+                            className="read-more"
+                            href={`https://www.google.com/search?q=${encodeURIComponent(post.title)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Read More →
+                        </a>
+                    </div>
+                ))}
+            </div>
+
+        </div>
+    );
+};
+
+export default BlogPage;

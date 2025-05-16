@@ -10,7 +10,7 @@ const About = () => {
         manage your expenses with ease and clarity.
       </p>
 
-      <h2>🔍 Key Features:</h2>
+      <h2>Key Features:</h2>
       <ul>
         <li>Create custom budget categories (e.g., Food, Rent, Travel)</li>
         <li>Track your expenses and view detailed breakdowns</li>
@@ -19,7 +19,7 @@ const About = () => {
         <li>Set recurring expense reminders</li>
       </ul>
 
-      <h2>🎯 Our Mission:</h2>
+      <h2>Our Mission:</h2>
       <p>
         Our goal is to make budgeting effortless and effective, helping users develop better
         financial habits and achieve their savings goals.
