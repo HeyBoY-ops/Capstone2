@@ -1,10 +1,9 @@
 import './App.css';
-import Home from './Component/Home_Page/home';
+import Home from './Component/Home_Page/Home';
 import Login from './LoginPage/login';
-import SignUp from './SignUpPage/signup';
+import SignUp from './LoginPage/signup';
 import BudgetPage from './Component/Budget/BudgetPage';
 import Navbar from './Component/Navbar/navbar';
-import About from './Component/About_Page/About';
 import BlogPage from './Component/Blog/BlogPage';
 import BlogDetail from './Component/Blog/BlogDetail';
 
@@ -22,7 +21,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         {/* <Route path="/budget" element={<BudgetPage />} /> */}
         <Route path="/budget" element={<BudgetPage />} />
-        <Route path="/about" element={<About />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>

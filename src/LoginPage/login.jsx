@@ -1,3 +1,86 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import "./login.css";
+
+const Login = () => {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const { login } = useUser();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const matchedUser = users.find(
+      (u) => u.email === form.email && u.password === form.password
+    );
+
+    if (!matchedUser) {
+      alert("Invalid credentials. Try again.");
+      return;
+    }
+
+    login({ name: matchedUser.name, email: matchedUser.email });
+    navigate("/");
+  };
+
+  return (
+    <div className="auth-modern-wrapper">
+      <form className="auth-card-glass" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <p>Welcome back! Please login to your account.</p>
+
+        <div className="input-group">
+          <input
+            type="email"
+            name="email"
+            placeholder=" "
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Email</label>
+        </div>
+
+        <div className="input-group">
+          <input
+            type="password"
+            name="password"
+            placeholder=" "
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+        </div>
+
+        <button type="submit" className="btn-modern">Login</button>
+
+        <div className="redirect-link">
+          Don't have an account? <a href="/signup">Sign Up</a>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
+
+
+
+
+
+
+
+
+
+
+{/*
 import React from 'react'
 import './login.css'
 import Image from "../../src/assets/Login.webp"
@@ -79,4 +162,4 @@ function Login() {
 }
 
 
-export default Login;
+export default Login;*/}

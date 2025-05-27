@@ -1,4 +1,6 @@
 // src/Component/Blog/blogData.js
+window.dispatchEvent(new Event("budgetsUpdated"));
+
 
 export const blogPosts = [
     {
@@ -19,5 +21,6 @@ export const blogPosts = [
       summary: "Learn how to plan each month financially with ease...",
       content: "Full content for blog post 3..."
     }
+    
   ];
   

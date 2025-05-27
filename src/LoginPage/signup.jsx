@@ -1,3 +1,102 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import "./login.css";
+
+const Signup = () => {
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const { login } = useUser();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const userExists = users.find((u) => u.email === form.email);
+    if (userExists) {
+      alert("User already exists. Please login.");
+      return;
+    }
+
+    const newUser = {
+      name: form.name,
+      email: form.email,
+      password: form.password,
+    };
+
+    localStorage.setItem("users", JSON.stringify([...users, newUser]));
+    login({ name: newUser.name, email: newUser.email });
+    navigate("/");
+  };
+
+  return (
+    <div className="auth-modern-wrapper">
+      <form className="auth-card-glass" onSubmit={handleSubmit}>
+        <h2>Create Account</h2>
+        <p>Welcome! Please fill in the details to sign up.</p>
+
+        <div className="input-group">
+          <input
+            type="text"
+            name="name"
+            placeholder=" "
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+          <label>Full Name</label>
+        </div>
+
+        <div className="input-group">
+          <input
+            type="email"
+            name="email"
+            placeholder=" "
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Email</label>
+        </div>
+
+        <div className="input-group">
+          <input
+            type="password"
+            name="password"
+            placeholder=" "
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+        </div>
+
+        <button type="submit" className="btn-modern">Sign Up</button>
+
+        <div className="redirect-link">
+          Already have an account? <a href="/login">Login</a>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Signup;
+
+
+
+
+
+
+
+
+
+{/*
 import React from 'react'
 import './signup.css'
 import Image from '../../src/assets/Login.webp'
@@ -120,4 +219,4 @@ function SignUp() {
 }
 
 
-export default SignUp;
+export default SignUp;*/}

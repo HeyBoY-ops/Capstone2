@@ -1,4 +1,136 @@
-* {
+/* Full-page background */
+.auth-modern-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://source.unsplash.com/1600x900/?finance,money') center/cover no-repeat;
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  /* Glassmorphism card */
+  .auth-card-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: black;
+    text-align: center;
+    animation: slideIn 0.6s ease;
+  }
+  
+  /* Headings */
+  .auth-card-glass h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .auth-card-glass p {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    color: #676464;
+  }
+  
+  /* Input Fields */
+  .input-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 14px 10px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    color: black;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .input-group label {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    color: black;
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 12px;
+    font-size: 0.75rem;
+    color: #90caf9;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 5px;
+    border-radius: 5px;
+  }
+  
+  /* Button */
+  .btn-modern {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2196f3, #64b5f6);
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .btn-modern:hover {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
+    transform: scale(1.03);
+  }
+  
+  /* Redirect Link */
+  .redirect-link {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #6b6868;
+  }
+  
+  .redirect-link a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  
+  /* Animation */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 480px) {
+    .auth-card-glass {
+      padding: 30px 20px;
+    }
+  }
+  
+  
+
+
+
+
+
+
+/* * {
     color: black;
     margin: 0;
     padding: 0;
@@ -67,4 +199,4 @@
 
 .footer a{
     text-decoration: underline;
-}
+} */
