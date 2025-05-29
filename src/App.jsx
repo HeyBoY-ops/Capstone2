@@ -6,6 +6,7 @@ import BudgetPage from './Component/Budget/BudgetPage';
 import Navbar from './Component/Navbar/navbar';
 import BlogPage from './Component/Blog/BlogPage';
 import BlogDetail from './Component/Blog/BlogDetail';
+import MonthlyBreakdown from "./pages/MonthlyBreakdown";
 
 
 
@@ -19,10 +20,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/budget" element={<BudgetPage />} /> */}
         <Route path="/budget" element={<BudgetPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/monthly-breakdown" element={<MonthlyBreakdown />} />
       </Routes>
     </>
   );

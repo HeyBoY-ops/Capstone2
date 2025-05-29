@@ -20,6 +20,33 @@
   box-sizing: border-box;
 }
 
+/* Logout button */
+.navbar-user button{
+  background-color: red;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.navbar-user img {
+  box-sizing: border-box;
+  padding: 0.4em;
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 /* Logo */
 .nav-logo {
   font-size: 1.8rem;
@@ -64,12 +91,11 @@
 .username {
   color: #fff;
   font-weight: 500;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
-/* Logout button */
 .logout-btn {
-  background-color: transparent;
+  background-color: red;
   border: 1px solid white;
   color: white;
   padding: 6px 12px;

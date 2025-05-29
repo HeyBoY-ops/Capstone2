@@ -1,0 +1,94 @@
+/* MonthlyBreakdown.css */
+
+.monthly-breakdown {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #333;
+  }
+  
+  .monthly-breakdown h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #2b2b2b;
+  }
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filters select {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .filters select:focus {
+    outline: none;
+    border-color: #3f51b5;
+    box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+  }
+  
+  .breakdown-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .breakdown-card {
+    background-color: #f5f5f5;
+    border: 2px solid #dcdcdc;
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  }
+  
+  .breakdown-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  
+  .breakdown-card p {
+    margin: 4px 0;
+    font-size: 1rem;
+  }
+  
+  .breakdown-chart {
+    margin-bottom: 2rem;
+  }
+  
+  
+  .over-budget {
+    border-color: #ff4d4d;
+    background-color: #ffeaea;
+  }
+  
+  .over-budget h3,
+  .over-budget p {
+    color: #c62828;
+  }
+  
+  @media (max-width: 600px) {
+    .filters {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .breakdown-card {
+      padding: 1rem;
+    }
+  
+    .monthly-breakdown {
+      padding: 1rem;
+    }
+  }
+  

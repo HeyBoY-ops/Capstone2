@@ -122,6 +122,11 @@
   flex-grow: 1; /* Take remaining space */
 }
 
+.features .card-link{
+  text-decoration: none;
+  color: black;
+}
+
 .features h2 {
   font-size: 2rem;
   margin-bottom: 40px;

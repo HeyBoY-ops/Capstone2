@@ -83,20 +83,32 @@ function Home() {
 
       {/* Features Section */}
       <section className="features">
+
         <h2>Features</h2>
         <div className="feature-cards">
-          <div className="card">
-            <h3>Smart Budgeting</h3>
-            <p>Track your spending vs budget. Get alerts when expenses exceed your plan.</p>
-          </div>
-          <div className="card">
-            <h3>Monthly Breakdown</h3>
-            <p>Filter expenses by month and category. View beautiful and meaningful charts.</p>
-          </div>
-          <div className="card">
-            <h3>Blog Tips</h3>
-            <p>Read finance advice, savings tips, and money management tricks from experts.</p>
-          </div>
+          
+          <Link to="/budget" className="card-link">
+            <div className="card">
+              <h3>Smart Budgeting</h3>
+              <p>Track your spending vs budget. Get alerts when expenses exceed your plan.</p>
+            </div>
+          </Link>
+
+          <Link to="/monthly-breakdown" className="card-link">
+            <div className="card">
+              <h3>Monthly Breakdown</h3>
+              <p>Filter expenses by month and category. View beautiful and meaningful charts.</p>
+            </div>
+          </Link>
+
+
+          <Link to="/blog" className="card-link">
+            <div className="card">
+              <h3>Blog Tips</h3>
+              <p>Read finance advice, savings tips, and money management tricks from experts.</p>
+            </div>
+          </Link>
+
         </div>
       </section>
 
