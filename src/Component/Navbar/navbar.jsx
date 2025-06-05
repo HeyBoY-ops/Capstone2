@@ -17,12 +17,12 @@ const Navbar = () => {
         <Link to="/" className="nav-logo">SmartBudget</Link>
         <div className="nav-links">
           <Link to="/budget">Budget Planner</Link>
-          <Link to="monthly-breakdown" >MonthlyBreakdown</Link>
+          <Link to="/monthly-breakdown">MonthlyBreakdown</Link>
           <Link to="/blog">Blog</Link>
           {user ? (
             <div className="navbar-user">
               <img
-                src={`https://api.dicebear.com/6.x/initials/svg?seed=${user.name}`}
+                src={`https://api.dicebear.com/6.x/initials/svg?seed=${user?.name || 'user'}`}
                 alt="avatar"
                 className="avatar-img"
                 onClick={toggleLogout}

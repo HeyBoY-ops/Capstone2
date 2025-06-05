@@ -120,7 +120,7 @@ const BudgetPage = () => {
         </button>
 
         {editIndex !== null && (
-          <button onClick={handleDelete} style={{ backgroundColor: "#f44336", color: "white" }}>
+          <button onClick={handleDelete} style={{ backgroundColor: "#fc6a03", color: "white" }}>
             Delete Selected
           </button>
         )}
@@ -128,9 +128,14 @@ const BudgetPage = () => {
         <button onClick={() => {
           localStorage.removeItem("budgets");
           setBudgets([]);
-        }}>
+        }} style={{backgroundColor: "#D30000"}} >
           Clear All Budgets
         </button>
+      </div>
+
+      {/* Chart */}
+      <div className="chart-section">
+        <BudgetChart data={filteredBudgets} />
       </div>
 
       {/* Budget Cards */}
@@ -154,11 +159,6 @@ const BudgetPage = () => {
             </div>
           );
         })}
-      </div>
-
-      {/* Chart */}
-      <div className="chart-section">
-        <BudgetChart data={filteredBudgets} />
       </div>
     </div>
   );

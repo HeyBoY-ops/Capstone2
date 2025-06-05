@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import "./login.css";
 
@@ -62,8 +62,9 @@ const Login = () => {
         <button type="submit" className="btn-modern">Login</button>
 
         <div className="redirect-link">
-          Don't have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </div>
+
       </form>
     </div>
   );
