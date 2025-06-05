@@ -1,5 +1,5 @@
 import './App.css';
-import Home from './Component/Home_Page/Home';
+import Home from './Component/Home_Page/home';
 import Login from './LoginPage/login';
 import SignUp from './LoginPage/signup';
 import BudgetPage from './Component/Budget/BudgetPage';
