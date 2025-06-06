@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && echo > dist/.nojekyll",
     "deploy": "gh-pages -d dist"
+
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -21,5 +22,5 @@
     "@vitejs/plugin-react": "^4.5.0",
     "gh-pages": "^5.0.0"
   },
-  "homepage": "https://HeyBoY-ops.github.io/Capstone2"
+  "homepage": "https://HeyBoY-ops.github.io/Capstone2/"
 }

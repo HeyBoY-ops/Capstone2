@@ -7,9 +7,6 @@ import Navbar from './Component/Navbar/navbar';
 import BlogPage from './Component/Blog/BlogPage';
 import BlogDetail from './Component/Blog/BlogDetail';
 import MonthlyBreakdown from "./pages/MonthlyBreakdown";
-
-
-
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
