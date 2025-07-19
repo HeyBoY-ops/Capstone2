@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import "./login.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -12,26 +15,30 @@ const Signup = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      // Create user in Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
+      const user = userCredential.user;
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+      // Save additional data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name: form.name,
+        email: form.email,
+        uid: user.uid,
+        createdAt: new Date(),
+      });
 
-    const userExists = users.find((u) => u.email === form.email);
-    if (userExists) {
-      alert("User already exists. Please login.");
-      return;
+      // Set user in context
+      login({ name: form.name, email: form.email });
+
+      // Redirect to home
+      navigate("/");
+    } catch (error) {
+      console.error("Signup Error:", error.message);
+      alert(error.message);
     }
-
-    const newUser = {
-      name: form.name,
-      email: form.email,
-      password: form.password,
-    };
-
-    localStorage.setItem("users", JSON.stringify([...users, newUser]));
-    login({ name: newUser.name, email: newUser.email });
-    navigate("/");
   };
 
   return (
@@ -93,7 +100,23 @@ export default Signup;
 
 
 
-
+{/*try{
+  await createUserWithEmailAndPassword(auth, form.email, form.password);
+  const user = auth.currentUser;
+  console.log(user);
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(userRef, {
+      name: form.name,
+      email: user.email,
+    });
+  }
+  console.log("User Registered Sucessfully!!!")
+  navigate("/login");
+}catch (error){
+  console.log(error.message);
+};
+*/}
 
 
 {/*

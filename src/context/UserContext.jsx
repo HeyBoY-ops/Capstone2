@@ -1,21 +1,40 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../LoginPage/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("currentUser")) || null
-  );
+  const [user, setUser] = useState(null);
 
   const login = (userData) => {
     setUser(userData);
-    localStorage.setItem("currentUser", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("currentUser");
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        try {
+          const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setUser(userData);
+          }
+        } catch (err) {
+          console.error("Error fetching user:", err);
+        }
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, login, logout }}>

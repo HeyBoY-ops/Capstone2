@@ -60,7 +60,7 @@ function Home() {
         <div className="stats-cards">
           <div className="card">
             <h3>Total Categories</h3>
-            <p>{stats.totalCategories}</p>
+            <p>{stats.totalCategories.toLocaleString()}</p>
           </div>
           <div className="card">
             <h3>Total Budgeted</h3>

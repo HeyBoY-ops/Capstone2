@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
 import "./login.css";
 
 const Login = () => {
@@ -12,21 +15,24 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      const user = userCredential.user;
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const matchedUser = users.find(
-      (u) => u.email === form.email && u.password === form.password
-    );
+      // Get name from Firestore
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      const userData = userDoc.data();
 
-    if (!matchedUser) {
+      login({ name: userData.name, email: userData.email });
+      console.log("User Login Successful");
+
+      navigate("/");
+    } catch (error) {
+      console.error("Login Error:", error.message);
       alert("Invalid credentials. Try again.");
-      return;
     }
-
-    login({ name: matchedUser.name, email: matchedUser.email });
-    navigate("/");
   };
 
   return (
@@ -71,6 +77,7 @@ const Login = () => {
 };
 
 export default Login;
+
 
 
 
