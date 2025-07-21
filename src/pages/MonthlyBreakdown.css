@@ -96,6 +96,11 @@
     background-color: #f1aeae;
     border: 2px solid #d66c64;
   }
+
+  .warning-text {
+    color: #d32f2f;
+    font-weight: bold;
+  }
   
   
   

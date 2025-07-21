@@ -69,6 +69,7 @@ const MonthlyBreakdown = () => {
                     </div>
                 )}
 
+
                 {filteredBudgets.map((item, index) => {
                     const remaining = item.total - item.spent;
                     let cardColor = "";
@@ -84,6 +85,9 @@ const MonthlyBreakdown = () => {
                             <p><strong>Budget:</strong> ₹{item.total}</p>
                             <p><strong>Spent:</strong> ₹{item.spent}</p>
                             <p><strong>Remaining:</strong> ₹{item.total - item.spent}</p>
+                            {remaining < 0 && (
+                                <p className="warning-text">🚨 Over Budget by ₹{Math.abs(remaining)}</p>
+                            )}
                         </div>
                     );
                 })}
