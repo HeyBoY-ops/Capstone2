@@ -23,8 +23,9 @@ export const UserProvider = ({ children }) => {
           const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            setUser(userData);
+            setUser({ uid: firebaseUser.uid, ...userData });
           }
+          
         } catch (err) {
           console.error("Error fetching user:", err);
         }

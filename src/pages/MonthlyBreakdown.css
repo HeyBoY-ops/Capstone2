@@ -75,6 +75,30 @@
     color: #c62828;
   }
   
+  .budget-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .budget-card.green {
+    background-color: #55d65b;
+    border: 2px solid #158a19;
+  }
+  
+  .budget-card.yellow {
+    background-color: #ffc107;
+    border: 2px solid #b9931e;
+  }
+  
+  .budget-card.red {
+    background-color: #f1aeae;
+    border: 2px solid #d66c64;
+  }
+  
+  
+  
   @media (max-width: 600px) {
     .filters {
       flex-direction: column;

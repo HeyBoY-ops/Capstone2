@@ -1,5 +1,134 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { db } from "../../LoginPage/firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { useUser } from "../../context/UserContext";
+import "./Home.css";
+
+function Home() {
+  const { user } = useUser(); // Get the current logged-in user
+  const [stats, setStats] = useState({
+    totalCategories: 0,
+    totalBudget: 0,
+    totalSpent: 0,
+    totalRemaining: 0,
+    overspentCount: 0,
+  });
+
+  const fetchBudgetStats = async () => {
+    if (!user) return;
+  
+    try {
+      const budgetRef = collection(db, "users", user.uid, "budgets");
+      const snapshot = await getDocs(budgetRef);
+  
+      const budgets = snapshot.docs.map(doc => doc.data());
+  
+      const totalCategories = budgets.length;
+      const totalBudget = budgets.reduce((sum, item) => sum + Number(item.total || 0), 0);
+      const totalSpent = budgets.reduce((sum, item) => sum + Number(item.spent || 0), 0);
+      const totalRemaining = totalBudget - totalSpent;
+      const overspentCount = budgets.filter(item => Number(item.spent) > Number(item.total)).length;
+  
+      setStats({ totalCategories, totalBudget, totalSpent, totalRemaining, overspentCount });
+    } catch (error) {
+      console.error("Error fetching budget stats:", error);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchBudgetStats();
+  }, [user]);
+
+  return (
+    <div className="home-container">
+      {/* Hero Section */}
+      <section className="hero">
+        <h1>Welcome to SmartBudget</h1>
+        <p>Plan, Track, and Control Your Budget Easily.</p>
+        <div className="hero-buttons">
+          <Link to="/budget"><button className="btn planner">Budget Planner</button></Link>
+          <Link to="/blog"><button className="btn blog">Read Blog</button></Link>
+        </div>
+      </section>
+
+      {/* Live Budget Stats Section */}
+      <section className="live-stats">
+        <h2>Live Budget Stats</h2>
+        <div className="stats-cards">
+          <div className="card">
+            <h3>Total Categories</h3>
+            <p>{stats.totalCategories.toLocaleString()}</p>
+          </div>
+          <div className="card">
+            <h3>Total Budgeted</h3>
+            <p>₹{stats.totalBudget.toLocaleString()}</p>
+          </div>
+          <div className="card">
+            <h3>Total Spent</h3>
+            <p>₹{stats.totalSpent.toLocaleString()}</p>
+          </div>
+          <div className="card">
+            <h3>Total Remaining</h3>
+            <p>₹{stats.totalRemaining.toLocaleString()}</p>
+          </div>
+
+
+
+          <div className="card">
+            <h3>Overspent Categories</h3>
+            <p>{stats.overspentCount}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features">
+        <h2>Features</h2>
+        <div className="feature-cards">
+          <Link to="/budget" className="card-link">
+            <div className="card">
+              <h3>Smart Budgeting</h3>
+              <p>Track your spending vs budget. Get alerts when expenses exceed your plan.</p>
+            </div>
+          </Link>
+
+          <Link to="/monthly-breakdown" className="card-link">
+            <div className="card">
+              <h3>Monthly Breakdown</h3>
+              <p>Filter expenses by month and category. View beautiful and meaningful charts.</p>
+            </div>
+          </Link>
+
+          <Link to="/blog" className="card-link">
+            <div className="card">
+              <h3>Blog Tips</h3>
+              <p>Read finance advice, savings tips, and money management tricks from experts.</p>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        © {new Date().getFullYear()} SmartBudget. All rights reserved.
+      </footer>
+    </div>
+  );
+}
+
+export default Home;
+
+
+
+
+
+
+
+{/*
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 function Home() {
@@ -44,7 +173,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* Hero Section */}
+      
       <section className="hero">
         <h1>Welcome to SmartBudget</h1>
         <p>Plan, Track, and Control Your Budget Easily.</p>
@@ -54,7 +183,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Live Budget Stats Section */}
+
       <section className="live-stats">
         <h2>Live Budget Stats</h2>
         <div className="stats-cards">
@@ -81,7 +210,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+
       <section className="features">
 
         <h2>Features</h2>
@@ -112,7 +241,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+
       <footer className="footer">
         © {new Date().getFullYear()} SmartBudget. All rights reserved.
       </footer>
@@ -121,3 +250,4 @@ function Home() {
 }
 
 export default Home;
+*/}

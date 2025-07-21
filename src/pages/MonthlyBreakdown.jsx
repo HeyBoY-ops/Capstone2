@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./MonthlyBreakdown.css";
 import BarBudgetChart from "../Component/Budget/BarBudgetChart";
+import { db } from "../LoginPage/firebase";
+import { useUser } from "../context/UserContext";
+import { collection, getDocs } from "firebase/firestore";
 
 
 const MonthlyBreakdown = () => {
+    const { user } = useUser();
     const [budgets, setBudgets] = useState([]);
     const [filteredMonth, setFilteredMonth] = useState("");
     const [filteredCategory, setFilteredCategory] = useState("");
 
     useEffect(() => {
-        const stored = JSON.parse(localStorage.getItem("budgets")) || [];
-        setBudgets(stored);
-    }, []);
+        const fetchBudgets = async () => {
+            if (!user) return;
+            const ref = collection(db, "users", user.uid, "budgets");
+            const snapshot = await getDocs(ref);
+            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setBudgets(data);
+        };
+
+        fetchBudgets();
+    }, [user]);
 
     const filteredBudgets = budgets.filter((item) => {
         const matchesMonth = filteredMonth ? item.month === filteredMonth : true;
@@ -58,15 +69,25 @@ const MonthlyBreakdown = () => {
                     </div>
                 )}
 
-                {filteredBudgets.map((item, i) => (
-                    <div key={i} className={`breakdown-card ${item.spent > item.budget ? "over-budget" : ""}`}>
-                        <h3>{item.category}</h3>
-                        <p><strong>Month:</strong> {item.month || "N/A"}</p>
-                        <p><strong>Budget:</strong> ₹{item.budget}</p>
-                        <p><strong>Spent:</strong> ₹{item.spent}</p>
-                        <p><strong>Remaining:</strong> ₹{item.budget - item.spent}</p>
-                    </div>
-                ))}
+                {filteredBudgets.map((item, index) => {
+                    const remaining = item.total - item.spent;
+                    let cardColor = "";
+
+                    if (remaining === 0) cardColor = "yellow";
+                    else if (remaining < 0) cardColor = "red";
+                    else cardColor = "green";
+
+                    return (
+                        <div key={index} className={`budget-card ${cardColor}`}>
+                            <h3>{item.category}</h3>
+                            <p><strong>Month:</strong> {item.month || "N/A"}</p>
+                            <p><strong>Budget:</strong> ₹{item.total}</p>
+                            <p><strong>Spent:</strong> ₹{item.spent}</p>
+                            <p><strong>Remaining:</strong> ₹{item.total - item.spent}</p>
+                        </div>
+                    );
+                })}
+
             </div>
 
         </div>

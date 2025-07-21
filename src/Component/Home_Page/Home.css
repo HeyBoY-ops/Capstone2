@@ -102,11 +102,13 @@
 
 .planner {
   background-color: #6a1b9a;
+  border: 1.5px solid white;
   color: white;
 }
 
 .blog {
   background-color: #f9a825;
+  border: 1.6px solid white;
   color: white;
 }
 
