@@ -21,7 +21,6 @@ const Login = () => {
       const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
       const user = userCredential.user;
 
-      // Get name from Firestore
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const userData = userDoc.data();
 

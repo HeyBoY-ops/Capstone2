@@ -159,13 +159,37 @@
 
 /* Footer fixed to bottom when content is less */
 .footer {
-  text-align: center;
+  background-color: #000; /* black background */
+  color: #f1f5f9;         /* light text */
   padding: 20px 10px;
   font-size: 0.9rem;
-  color: #777;
-  background-color: #000000;
   margin-top: auto;
 }
+
+.footer-content {
+  display: flex;
+  justify-content: center;     /* center the content horizontally */
+  align-items: center;
+  position: relative;
+}
+
+.social-icons {
+  position: absolute;
+  left: 10px;                  /* push to bottom-left */
+}
+
+.social-icons svg {
+  color: #f1f5f9;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-icons svg:hover {
+  color: #90caf9;
+}
+
+
 
 /* Responsive */
 @media (max-width: 600px) {
