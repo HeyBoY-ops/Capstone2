@@ -105,6 +105,6 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ## 📞 Contact
 
-**Project Link**: [https://heyboy-ops.github.io/Capstone2/](https://heyboy-ops.github.io/Capstone2/)
+**Project Link**: [https://heyboy-ops.github.io/Capstone2/](https://heyboy-ops.github.io/Budget-Planner/)
 
 Made with ❤️ by [Abhishek Sharma](https://github.com/HeyBoY-ops)
